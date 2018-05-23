@@ -1,4 +1,6 @@
 (function () {
+    $(init);
+
     var $usernameFld;
     var $passwordFld;
     var $firstNameFld;
@@ -17,6 +19,23 @@
 
     $(main);
 
+    function init() {
+        $usernameFld=$('#usernameFld');
+        $passwordFld=$('#passwordFld');
+        $tbody = $('.wbdv-tbody');
+
+        $userRowTemplate =
+            $('.wbdv-template.wbdv-user')
+                .clone()
+                .removeClass('wbdv-hidden');
+
+        $addBtn = $('.wbdv-create');
+        $addBtn.click(createUser);
+        userService
+            .findAllUsers(renderUsers);
+    }
+
+
     function main() { … }
     function createUser() { … }
     function findAllUsers() { … }
@@ -25,15 +44,16 @@
     function selectUser() { … }
     function updateUser() { … }
     function renderUser(user) { … }
-    function renderUsers(users) { … }
-    function AdminUserServiceClient() {
-        this.createUser = createUser;
-        this.findAllUsers = findAllUsers;
-        this.findUserById = findUserById;
-        this.deleteUser = deleteUser;
-        this.updateUser = updateUser;
-        this.url =
-            'http://localhost:8080/api/user';
-        var self = this;
+
+    function renderUsers(users) {
+        $tbody.empty();
+        for(var u in users) {
+            var user = users[u];
+            var $row = $userRowTemplate.clone();
+            $row.find('.wbdv-username')
+                .html(user.username);
+            $tbody.append($row);
+        }
     }
+
 })();
