@@ -48,35 +48,35 @@
             <th><input id="passwordFld" class="form-control" type="password" placeholder="Password"/></th>
             <th><input id="firstNameFld" class="form-control" placeholder="First Name"/></th>
             <th><input id="lastNameFld" class="form-control" placeholder="Last Name"/></th>
-            <th><select id="role" class="form-control">
+            <th><select id="roleFld" class="form-control">
                 <option selected id="student">Student</option>
                 <option id="faculty">Faculty</option>
                 <option id="administrator">Administrator</option>
             </select></th>
             <th>
-                <div id="inline">
-                    <div><abbr title="Search"><i id="search" class="fas fa-search fa-2x"></i></abbr></div>
-                    <div><abbr title="Add"><i id="add" class="fas fa-plus fa-2x"></i></abbr></div>
-                    <div><abbr title="Update"><i id="update" class="fas fa-check fa-2x"></i></abbr></div>
+                <div class="inline">
+                    <div><abbr title="Search"><i id="searchBtn" class="fas fa-search fa-2x wbdv-search"></i></abbr></div>
+                    <div><abbr title="Add"><i id="addBtn" class="fas fa-plus fa-2x wbdv-create"></i></abbr></div>
+                    <div><abbr title="Update"><i id="updateBtn" class="fas fa-check fa-2x wbdv-update"></i></abbr></div>
                 </div>
             </th>
 
         </tr>
 
         <!--Form Body-->
-        <tbody>
-        <tr class="template">
-            <td class="username">A</td>
-            <td class="password" type="password">*****</td>
-            <td class="firstName">A</td>
-            <td class="lastName">A</td>
-            <td class="role">Student</td>
+        <tbody class="wbdv-tbody">
+        <tr class="wbdv-userRowTemplate">
+            <td class="wbdv-username">A</td>
+            <td class="wbdv-password" type="password">*****</td>
+            <td class="wbdv-firstName">A</td>
+            <td class="wbdv-lastName">A</td>
+            <td class="wbdv-role">Student</td>
 
             <th>
-                <div id="inline">
+                <div class="inline">
                 <div>&nbsp;</div>
-                <div><abbr title="Delete"><i id="delete" class="fas fa-times fa-2x"></i></abbr></div>
-                <div><abbr title="Edit"><i id="edit" class="fas fa-pencil-alt fa-2x"></i></abbr></div>
+                <div><abbr title="Delete"><i id="deleteBtn" class="fas fa-times fa-2x wbdv-remove"></i></abbr></div>
+                <div><abbr title="Edit"><i id="editBtn" class="fas fa-pencil-alt fa-2x wbdv-edit"></i></abbr></div>
                 </div>
             </th>
         </tr>
