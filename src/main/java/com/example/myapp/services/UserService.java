@@ -3,6 +3,8 @@ package com.example.myapp.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,25 @@ public class UserService {
 	@Autowired
 	UserRepository repository;
 	
+//	@PostMapping("/api/login")
+//	public List<User> login(@RequestBody User user) {
+//		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+//	}
+//	
+	
+//	@GetMapping("/api/user{username}")
+//	public List<User> findUserByUsername(@PathVariable("username") String username) {
+//		return repository.findByUsername(username);
+//	}
+//	
+	
+//	@PostMapping("/api/register")
+//	public User register(@RequestBody User user, HttpSession session) {
+//		...
+//	}
+
+	
+	
 	@DeleteMapping("/api/user/{userId}")
 	public void deleteUser(@PathVariable("userId") int id) {
 		repository.deleteById(id);
@@ -29,12 +50,6 @@ public class UserService {
 	public User createUser(@RequestBody User user) {
 		return repository.save(user);
 	}
-	
-//	@PostMapping("/api/login")
-//	public List<User> login(@RequestBody User user) {
-//		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
-//	}
-//	
 	
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {

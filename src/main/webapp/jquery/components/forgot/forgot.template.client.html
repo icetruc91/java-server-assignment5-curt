@@ -12,8 +12,8 @@
     <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">-->
 
     <!--CSS Style Sheet-->
-    <link rel="stylesheet" href="register.style.client.css">
-    <title>Sign Up</title>
+    <link rel="stylesheet" href="forgot.style.client.css">
+    <title>Forgot Password</title>
 
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -21,20 +21,19 @@
             crossorigin="anonymous"></script>
 
     <script src="../../services/user.service.client.js"></script>
-    <script src="register.controller.client.js"></script>
+    <script src="forgot.controller.client.js"></script>
 </head>
 <body>
 <div class="container">
-<h1>Sign Up</h1>
+    <h1>Forgot your password? No problem!</h1>
+    <p>Simply enter your information below, press submit, and we'll send a new password your way shortly.</p>
     <div><span>Username</span></div>
     <input id="usernameFld" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-    <div><span>Password</span></div>
-    <input id="passwordFld" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-    <div><span>Verify Password</span></div>
-    <input id="verify-passwordFld" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+    <div><span>Email</span></div>
+    <input id="passwordFld" type="email" class="form-control" placeholder="Email@example.com" aria-label="Password" aria-describedby="basic-addon1">
     <p></p>
-    <button id="signupBtn" type="button" class="btn btn-primary btn-lg btn-block">Sign Up</button>
-    <a href="/jquery/components/login/login.template.client.html">Sign In</a>
+    <button id="submit" type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+    <a class="signup" href="/jquery/register/register.template.client.html">Sign Up</a>
 </div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

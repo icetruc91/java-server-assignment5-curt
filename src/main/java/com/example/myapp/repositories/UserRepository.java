@@ -10,5 +10,6 @@ public interface UserRepository extends CrudRepository<User, Integer>{
 //		@Param("username") String username, 
 //		@Param("password") String password);
 	
-
+//	public User findByUsername(String username); 
+	
 }

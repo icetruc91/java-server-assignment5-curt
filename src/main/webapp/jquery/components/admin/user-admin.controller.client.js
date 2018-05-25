@@ -19,6 +19,14 @@
 
             $('.addBtn').click(createUser);
 
+            $('.updateBtn').click(updateUser);
+
+            $('.searchBtn').click(updateUser);
+
+            $('.deleteBtn').click(updateUser);
+
+            $('.editBtn').click(updateUser);
+
             // document.getElementById('addBtn').onclick = function () {
             //     {createUser()}
             // };
@@ -77,6 +85,15 @@
             lastName: lastName,
             role: role
         };
+
+        fetch('http://localhost:8080/api/user', {
+            method: 'post',
+                body: JSON.stringify(user),
+                headers: {
+                    'content-type': 'application/json'
+                }
+
+        })
 
         userAdminService
             .createUser(user)
@@ -161,7 +178,7 @@
         var username = document.getElementById("usernameFld").value;
         var password = document.getElementById("passwordFld").value;
         var firstName = document.getElementById("firstNameFld").value;
-        var lastName = document.getElementById("lastNameFld").value
+        var lastName = document.getElementById("lastNameFld").value;
         var role = document.getElementById("roleFld").value;
 
         var user = {
@@ -181,7 +198,29 @@
 
      function renderUser(userId) {
          console.log('renderUser click event');
-     }
+         var user = userAdminService.findUserById(userId);
+         tbody.empty();
+
+         var clone = template.clone();
+             clone.attr('id', user.id);
+
+             // Buttons.
+             clone.find('.wbdv-remove').click(deleteUser);
+             clone.find('.wbdv-edit').click(editUser);
+
+             clone.find('.wbdv-username')
+                 .html(user.username);
+             clone.find('.wbdv-password')
+                 .html(user.password);
+             clone.find('.wbdv-firstName')
+                 .html(user.firstName);
+             clone.find('.wbdv-lastName')
+                 .html(user.lastName);
+             clone.find('.wbdv-role')
+                 .html(user.role);
+
+             tbody.append(clone);
+         }
 
 
 
