@@ -16,6 +16,9 @@ function UserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
+        }).then(function(response){
+                return response.json();
+
         });
     }
 
@@ -57,13 +60,13 @@ function UserServiceClient() {
     }
 
     function createUser(user) {
+
         return fetch(self.url, {
             method: 'post',
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
-            }
-        });
+            }});
     }
 
     // function UserService() {

@@ -22,11 +22,12 @@ public class UserService {
 	@Autowired
 	UserRepository repository;
 	
-//	@PostMapping("/api/login")
-//	public List<User> login(@RequestBody User user) {
-//		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
-//	}
-//	
+	@PostMapping("/api/login")
+	public User login(@RequestBody User user) {
+		List<User> users =(List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
+		return users.get(0);
+	}
+	
 	
 //	@GetMapping("/api/user{username}")
 //	public List<User> findUserByUsername(@PathVariable("username") String username) {
@@ -39,7 +40,25 @@ public class UserService {
 //		...
 //	}
 
+//	@PutMapping("/api/profile")
+//	public User updateProfile(@RequestBody user, HttpSession session) {
+//		...
+//	}
+//	
+//	@PostMapping("/api/logout")
+//	public User login(HttpSession session) {
+//		...
+//	}
 	
+//	@PostMapping("/api/login")
+//	public User login(@RequestBody User user, HttpSession session) {
+//		...
+//	}
+	
+//	@PostMapping("/api/register")
+//	public User register(@RequestBody User user, HttpSession session) {
+//		...
+//	}
 	
 	@DeleteMapping("/api/user/{userId}")
 	public void deleteUser(@PathVariable("userId") int id) {

@@ -2,13 +2,13 @@
 
     let tbody;
     let template;
-    userAdminService = new UserServiceClient();
+    var userAdminService = new UserServiceClient();
+
 
     $(main);
 
-        var userAdminService;
-
         function main() {
+
             $('h1').html('User Administration');
             tbody = $('.wbdv-tbody');
             template = $('.wbdv-userRowTemplate');
@@ -17,15 +17,12 @@
             var promise = userAdminService.findAllUsers();
             promise.then(renderUsers);
 
-            $('.addBtn').click(createUser);
+            $('#addBtn').click(createUser);
 
             $('.updateBtn').click(updateUser);
 
             $('.searchBtn').click(updateUser);
 
-            $('.deleteBtn').click(updateUser);
-
-            $('.editBtn').click(updateUser);
 
             // document.getElementById('addBtn').onclick = function () {
             //     {createUser()}
@@ -49,14 +46,16 @@
 
                 clone.attr('id', user.id);
 
+                var space = "*****";
+
                 // Buttons.
-                clone.find('.delete').click(deleteUser);
-                clone.find('.edit').click(editUser);
+                clone.find('.wbdv-remove').click(deleteUser);
+                clone.find('.wbdv-edit').click(editUser);
 
                 clone.find('.wbdv-username')
                     .html(user.username);
                 clone.find('.wbdv-password')
-                    .html(user.password);
+                    .html(space);
                 clone.find('.wbdv-firstName')
                     .html(user.firstName);
                 clone.find('.wbdv-lastName')
@@ -69,8 +68,8 @@
 
         }
 
-    function createUser() {
-        console.log('createUser');
+    function createUser(event) {
+        console.log(event);
 
         var username = $('#usernameFld').val();
         var password = $('#passwordFld').val();
@@ -86,18 +85,10 @@
             role: role
         };
 
-        fetch('http://localhost:8080/api/user', {
-            method: 'post',
-                body: JSON.stringify(user),
-                headers: {
-                    'content-type': 'application/json'
-                }
 
-        })
+        var promise = userAdminService.createUser(user);
 
-        userAdminService
-            .createUser(user)
-            .then(findAllUsers);
+            promise.then(findAllUsers);
 
     }
 
@@ -138,14 +129,9 @@
     function deleteUser(event) {
 
             var deleteBtn = $(event.currentTarget);
-            var userId = deleteBtn
-                .parent()
-                .parent()
-                .attr('id');
+            var userId = deleteBtn.parent().parent().parent().parent().attr('id');
 
-            userAdminService
-                .deleteUser(userId)
-                .then(findAllUsers);
+            userAdminService.deleteUser(userId).then(findAllUsers);
 
     }
 
