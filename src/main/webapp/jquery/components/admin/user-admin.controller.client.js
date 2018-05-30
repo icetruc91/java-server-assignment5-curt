@@ -19,20 +19,9 @@
 
             $('#addBtn').click(createUser);
 
-            $('.updateBtn').click(updateUser);
+            $('.updateBtn').click();
 
             $('.searchBtn').click(updateUser);
-
-
-            // document.getElementById('addBtn').onclick = function () {
-            //     {createUser()}
-            // };
-
-
-
-            // document.getElementById('deleteBtn').onclick = function () {
-            //     {deleteUser(userId)}
-            // }
 
 
         }
@@ -50,7 +39,7 @@
 
                 // Buttons.
                 clone.find('.wbdv-remove').click(deleteUser);
-                clone.find('.wbdv-edit').click(editUser);
+                clone.find('#editBtn').click(findUserById);
 
                 clone.find('.wbdv-username')
                     .html(user.username);
@@ -98,34 +87,36 @@
             .then(renderUsers);
     }
 
-    function findUserById(userId) {
-        tbody.empty();
+    function findUserById(event) {
 
-        for (var i = 0; i < users.length;i++) {
-            var user = users[i];
-            var clone = template.clone();
-            if (user[i].userId == userId) {
-                clone.attr('id', user.id);
+        var editBtn = $(event.currentTarget);
+        var userId = editBtn.parent().parent().parent().parent().attr('id');
+        console.log('userId found');
+        console.log(userId);
 
-                // Buttons.
-                clone.find('.wbdv-remove').click(deleteUser);
-                clone.find('.wbdv-edit').click(editUser);
+        var promise = userAdminService.findUserById(userId);
+        promise.then(findUserByIdHelper);
+        updateUser(userId);
 
-                clone.find('.wbdv-username')
-                    .html(user.username);
-                clone.find('.wbdv-password')
-                    .html(user.password);
-                clone.find('.wbdv-firstName')
-                    .html(user.firstName);
-                clone.find('.wbdv-lastName')
-                    .html(user.lastName);
-                clone.find('.wbdv-role')
-                    .html(user.role);
 
-                tbody.append(clone);
-            }
-        }
+
+    function findUserByIdHelper(promise) {
+        console.log(promise.username);
+        console.log(promise.password);
+        console.log(promise.firstName);
+        console.log(promise.lastName);
+        console.log(promise.role);
+
+        document.getElementById("usernameFld").value = promise.username;
+        document.getElementById("passwordFld").value = promise.password;
+        document.getElementById("firstNameFld").value = promise.firstName;
+        document.getElementById("lastNameFld").value = promise.lastName;
+        document.getElementById("roleFld").value = promise.role;
     }
+
+    }
+
+
     function deleteUser(event) {
 
             var deleteBtn = $(event.currentTarget);
@@ -135,49 +126,54 @@
 
     }
 
-    function editUser(event) {
-        console.log('edit click event');
-
-        var editBtn = $(event.currentTarget);
-        var userId = editBtn
-            .parent()
-            .parent()
-            .attr('id');
-
-        var user = userAdminService
-            .findUserById(userId);
-
-        document.getElementById("usernameFld").value = user.username;
-        document.getElementById("passwordFld").value = user.password;
-        document.getElementById("firstNameFld").value = user.firstName;
-        document.getElementById("lastNameFld").value = user.lastName;
-        document.getElementById("roleFld").value = user.role;
-
-
-
-    }
+    // function editUser(event) {
+    //     console.log('edit click event');
+    //
+    //     var editBtn = $(event.currentTarget);
+    //     var userId = editBtn
+    //         .parent()
+    //         .parent()
+    //         .attr('id');
+    //
+    //     var user = userAdminService
+    //         .findUserById(userId);
+    //
+    //     document.getElementById("usernameFld").value = user.username;
+    //     document.getElementById("passwordFld").value = user.password;
+    //     document.getElementById("firstNameFld").value = user.firstName;
+    //     document.getElementById("lastNameFld").value = user.lastName;
+    //     document.getElementById("roleFld").value = user.role;
+    //
+    //
+    //
+    // }
 
 
     function updateUser(userId) {
         console.log('update click event');
 
-        var username = document.getElementById("usernameFld").value;
-        var password = document.getElementById("passwordFld").value;
-        var firstName = document.getElementById("firstNameFld").value;
-        var lastName = document.getElementById("lastNameFld").value;
-        var role = document.getElementById("roleFld").value;
+        document.getElementById("updateBtn").addEventListener("click", updateUserHelper);
 
-        var user = {
-            username: username,
-            password: password,
-            firstName: firstName,
-            lastName: lastName,
-            role: role
-        };
 
-        userAdminService.updateUser(userId, user)
-            .then(findAllUsers);
+        function updateUserHelper() {
+            var username = document.getElementById("usernameFld").value;
+            var password = document.getElementById("passwordFld").value;
+            var firstName = document.getElementById("firstNameFld").value;
+            var lastName = document.getElementById("lastNameFld").value;
+            var role = document.getElementById("roleFld").value;
 
+            var user = {
+                username: username,
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                role: role
+            };
+
+            userAdminService.updateUser(userId, user)
+                .then(findAllUsers);
+            location.reload();
+        }
 
 
             }
@@ -192,7 +188,7 @@
 
              // Buttons.
              clone.find('.wbdv-remove').click(deleteUser);
-             clone.find('.wbdv-edit').click(editUser);
+             clone.find('.wbdv-edit').click(findUserById);
 
              clone.find('.wbdv-username')
                  .html(user.username);
