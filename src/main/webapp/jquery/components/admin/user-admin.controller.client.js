@@ -2,7 +2,7 @@
 
     let tbody;
     let template;
-    var userAdminService = new UserServiceClient();
+    let userAdminService = new UserServiceClient();
 
 
     $(main);

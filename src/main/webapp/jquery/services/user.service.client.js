@@ -5,6 +5,8 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.updateUser = updateUser;
     this.login = login;
+    // this.findByUsername = findByUsername;
+    this.register = register;
     this.url = '/api/user';
     this.loginUrl = '/api/login';
     var self = this;
@@ -69,13 +71,21 @@ function UserServiceClient() {
             }});
     }
 
-    // function UserService() {
-    //     this.register = register;
-    //     ...
-    //
-    //     function register(){
-    //         ...
-    //     }
-    //
+
+    // function findByUsername(username) {
+    //     return fetch(self.url + '/' + username)
+    //         .then(function (response) {
+    //             return response.json();
+    //         });
     // }
+
+    function register(user) {
+        return fetch(self.url + '/' + user)
+            .then(function (response) {
+                return response.json();
+            });
+    }
+
+
+
 }

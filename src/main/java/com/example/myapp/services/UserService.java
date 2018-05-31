@@ -3,6 +3,8 @@ package com.example.myapp.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 //import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,4 +101,26 @@ public class UserService {
 		}
 		return null;
 	}
-}
+	
+	
+	@GetMapping("/api/user/{username}")
+	public User findUserByUsername(@PathVariable("username")String username) {
+		return  repository.findByUsername(username);
+	}
+	
+	@PostMapping("/api/register")
+	public User register(@RequestBody User user, HttpSession session) {
+		if (repository.findByUsername(user.getUsername()) == null) {
+			createUser(user);
+			session.setAttribute("user", user);
+			return user;
+		}
+		else {
+			return null;
+		}
+		
+	}
+	
+	}
+	
+	
