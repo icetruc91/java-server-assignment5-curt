@@ -99,7 +99,6 @@
         updateUser(userId);
 
 
-
     function findUserByIdHelper(promise) {
         console.log(promise.username);
         console.log(promise.password);

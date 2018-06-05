@@ -3,8 +3,10 @@
     let username;
     let password;
     let verifyPassword;
+    let user;
+    let returnUser;
 
-    var userAdminService = new UserServiceClient();
+    let userAdminService = new UserServiceClient();
 
     $(main);
 
@@ -26,30 +28,41 @@
         // password = $('#passwordFld').val();
         // verifyPassword = $('#passwordVerifyFld').val();
 
-        var user = {
+        user = {
             username: username,
             password: password,
         };
-
 
         if (password.toString() != verifyPassword.toString()){
             alert("Passwords do not match! Please, try again.");
             location.reload();
         }
-        else if(userAdminService.register(user) == null) {
-            alert("Username is already taken! Please, try again.");
-            location.reload();
-        }
-        else {
-            window.location.href = "../components/profile/profile.template.client.html";
-        }
+
+        var promise = userAdminService.findUserByUsername(user.username);
+        promise.then(registerHelper);
+
 
 
     }
 
-    // function isSame(obj1, obj2) {
-    //
-    // }
+
+
+    function registerHelper(returnUser) {
+            if (returnUser!=null) {
+                alert("Username is already taken! Please, try again.");
+
+            }
+            else {
+                var promise = userAdminService.register(user);
+                promise.then(reload);
+            }
+
+    }
+
+    function reload(user) {
+        window.location.href = "../components/profile/profile.template.client.html?=" + user.id;
+
+    }
 
 
 

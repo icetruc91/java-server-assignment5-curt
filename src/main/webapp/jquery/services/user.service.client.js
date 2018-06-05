@@ -5,23 +5,30 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.updateUser = updateUser;
     this.login = login;
-    // this.findByUsername = findByUsername;
+    this.findUserByUsername = findUserByUsername;
+    this.logout = logout;
     this.register = register;
     this.url = '/api/user';
+    this.registerUrl = '/api/register'
     this.loginUrl = '/api/login';
+    this.logoutUrl = '/api/logout';
     var self = this;
 
     function login(username, password) {
         return fetch(self.loginUrl, {
             method: 'post',
-            body: JSON.stringify({username:username, password: password}),
+            body: JSON.stringify({username: username, password: password}),
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(function(response){
-                return response.json();
+        }).then(function (response) {
+            return response.json();
 
         });
+    }
+
+    function logout() {
+        return fetch(self.logoutUrl);
     }
 
     function updateUser(userId, user) {
@@ -32,8 +39,8 @@ function UserServiceClient() {
                 'content-type': 'application/json'
             }
         })
-            .then(function(response){
-                if(response.bodyUsed) {
+            .then(function (response) {
+                if (response.bodyUsed) {
                     return response.json();
                 } else {
                     return null;
@@ -42,9 +49,19 @@ function UserServiceClient() {
     }
 
     function findUserById(userId) {
-        return fetch(self.url + '/' + userId)
-            .then(function(response){
+        return fetch(self.url + '/id/' + userId)
+            .then(function (response) {
                 return response.json();
+            });
+    }
+
+    function findUserByUsername(username) {
+        return fetch(self.url + '/username/' + username)
+            .then(function (response) {
+                if (response.bodyUsed)
+                    return response.json();
+                else
+                    return null;
             });
     }
 
@@ -68,24 +85,20 @@ function UserServiceClient() {
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
-            }});
+            }
+        });
     }
 
-
-    // function findByUsername(username) {
-    //     return fetch(self.url + '/' + username)
-    //         .then(function (response) {
-    //             return response.json();
-    //         });
-    // }
 
     function register(user) {
-        return fetch(self.url + '/' + user)
-            .then(function (response) {
-                return response.json();
-            });
+        return fetch(self.registerUrl, {
+            method: 'post',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        }).then(function (response) {
+            return response.json();
+        });
     }
-
-
-
 }

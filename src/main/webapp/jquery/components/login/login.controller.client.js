@@ -1,28 +1,38 @@
 (function () {
-    var $usernameFld;
-    var $passwordFld;
-    var $loginBtn;
+    let username;
+    let password;
 
-    var userService = new UserServiceClient();
+    let userService = new UserServiceClient();
+
     $(main);
 
     function main() {
         $('#loginBtn').click(login);
     }
 
-    function login() {
+    function login(event) {
 
-        var $usernameFld = $('#usernameFld').val();
-        var $passwordFld = $('#passwordFld').val();
+        console.log(event);
+        username = document.getElementById("usernameFld").value;
+        password = document.getElementById("passwordFld").value;
 
-        var promise = userService.login($usernameFld,$passwordFld);
+        let promise = userService.login(username,password);
         promise.then(signInUser);
+
     }
 
     function signInUser(user) {
-        console.log(user);
-        if(user!=null){
+        if (user.username.toString() != username || user.password.toString() != password) {
+            alert("Username or password is incorrect! Please, try again.");
+        }
+
+        else {
             window.location.href='../profile/profile.template.client.html?uid='+user.id;
         }
+
+        console.log("user has been signed in.");
+
     }
+
+
 })();

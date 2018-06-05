@@ -2,10 +2,11 @@ h1 {
     color: cornflowerblue;
 }
 
-#signup {
-    margin-right: auto;
+.signup {
+    float: right;
 }
 
-#forgotPassword {
-    margin-left: auto;
+.forgotPassword {
+    float: left;
 }
+
