@@ -8,11 +8,11 @@
     $(main);
 
         function main() {
-
+        	
+//        	document.getElementById("myForm").reset();
             $('h1').html('User Administration');
             tbody = $('.wbdv-tbody');
             template = $('.wbdv-userRowTemplate');
-
 
             var promise = userAdminService.findAllUsers();
             promise.then(renderUsers);
@@ -82,6 +82,21 @@
     }
 
     function findAllUsers() {
+    	
+    	// Resets inputs in user administration. 
+//        var username = document.getElementById("usernameFld");
+//        var password = document.getElementById("passwordFld");
+//        var firstName = document.getElementById("firstNameFld");
+//        var lastName = document.getElementById("lastNameFld");
+//        var role = document.getElementById("roleFld");
+//        
+//        username.value = username.defaultValue;
+//        password.value = password.defaultValue;
+//        firstName.value = firstName.defaultValue;
+//        lastName.value = lastName.defaultValue;
+//        role.value = role.defaultValue;
+        
+    	document.getElementById("myForm").reset();
         userAdminService
             .findAllUsers()
             .then(renderUsers);
