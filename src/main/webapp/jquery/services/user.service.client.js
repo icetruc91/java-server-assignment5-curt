@@ -89,7 +89,7 @@ function UserServiceClient() {
         });
     }
 
-    this is something here to create something
+
 
     function register(user) {
         return fetch(self.registerUrl, {
