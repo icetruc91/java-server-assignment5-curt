@@ -1,4 +1,6 @@
-package com.example.myapp.models;
+package webdev.models;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,17 +17,38 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String role;
-	private String date;
+	private Date dateOfBirth;
 	private String phone;
 	private String email; 
+	
+	
 
 	
 	
-	public String getDate() {
-		return date;
+	public User(int id, String username, String password, String firstName, String lastName, String role,
+			Date dateOfBirth, String phone, String email) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.role = role;
+		this.dateOfBirth = dateOfBirth;
+		this.phone = phone;
+		this.email = email;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	
+	public User() {
+		super();
+	}
+	
+	
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDate(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 	public String getPhone() {
 		return phone;
