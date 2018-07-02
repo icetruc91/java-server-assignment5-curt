@@ -125,27 +125,7 @@
 
     }
 
-    // function editUser(event) {
-    //     console.log('edit click event');
-    //
-    //     var editBtn = $(event.currentTarget);
-    //     var userId = editBtn
-    //         .parent()
-    //         .parent()
-    //         .attr('id');
-    //
-    //     var user = userAdminService
-    //         .findUserById(userId);
-    //
-    //     document.getElementById("usernameFld").value = user.username;
-    //     document.getElementById("passwordFld").value = user.password;
-    //     document.getElementById("firstNameFld").value = user.firstName;
-    //     document.getElementById("lastNameFld").value = user.lastName;
-    //     document.getElementById("roleFld").value = user.role;
-    //
-    //
-    //
-    // }
+   
 
 
     function updateUser(userId) {
