@@ -15,7 +15,7 @@
 
     }
 
-    // Grabs input information to send to the server. 
+    // Grabs input information to send to the server.
     function register(event) {
         console.log(event);
 
@@ -36,6 +36,7 @@
             location.reload();
         }
 
+        // Finds user by username.
         var promise = userAdminService.findUserByUsername(user.username);
         promise.then(registerHelper);
 
