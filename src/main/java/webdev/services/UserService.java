@@ -80,8 +80,17 @@ public class UserService {
 	   session.setAttribute("currentUser", user);
 	   return user;
 	  }
+	  else if (user.getUsername().equals(credentials.getUsername())) {
+		  return user;
+	  }
+	  else if (user.getPassword().equals(credentials.getPassword())) {
+		  return user;
+	  }
 	 }
-	 return null;
+	 User nullUser = new User();
+	 nullUser.setUsername("null");
+	 nullUser.setPassword("null");
+	 return nullUser;
 	}
 
 	
