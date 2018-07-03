@@ -119,7 +119,7 @@ public class UserService {
 		return  repository.findByUsername(username);
 	}
 	
-	
+	// Registers a new user. 
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user,
 	HttpSession session) {
