@@ -89,8 +89,7 @@ function UserServiceClient() {
         });
     }
 
-
-
+    // Register used to post to the server when a new patron registers.
     function register(user) {
         return fetch(self.registerUrl, {
             method: 'post',
