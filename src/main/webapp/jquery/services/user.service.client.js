@@ -14,6 +14,7 @@ function UserServiceClient() {
     this.logoutUrl = '/api/logout';
     var self = this;
 
+    // Login service.
     function login(username, password) {
         return fetch(self.loginUrl, {
             method: 'post',

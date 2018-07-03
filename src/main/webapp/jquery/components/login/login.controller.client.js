@@ -1,4 +1,4 @@
-// Login controller. 
+// Login controller.
 (function () {
     let username;
     let password;
