@@ -55,7 +55,7 @@ function UserServiceClient() {
             });
     }
 
-    
+    // Finds user by username.
     function findUserByUsername(username) {
         return fetch(self.url + '/username/' + username)
             .then(function (response) {
