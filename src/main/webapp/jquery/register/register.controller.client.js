@@ -11,13 +11,11 @@
     $(main);
 
     function main() {
-
-
         $('#signupBtn').click(register);
-
 
     }
 
+    // Grabs input information to send to the server. 
     function register(event) {
         console.log(event);
 
@@ -33,7 +31,7 @@
             password: password,
         };
 
-        if (password.toString() != verifyPassword.toString()){
+        if (password.toString() != verifyPassword.toString()) {
             alert("Passwords do not match! Please, try again.");
             location.reload();
         }
@@ -42,20 +40,18 @@
         promise.then(registerHelper);
 
 
-
     }
 
 
-
     function registerHelper(returnUser) {
-            if (returnUser!=null) {
-                alert("Username is already taken! Please, try again.");
+        if (returnUser != null) {
+            alert("Username is already taken! Please, try again.");
 
-            }
-            else {
-                var promise = userAdminService.register(user);
-                promise.then(reload);
-            }
+        }
+        else {
+            var promise = userAdminService.register(user);
+            promise.then(reload);
+        }
 
     }
 
@@ -63,9 +59,6 @@
         window.location.href = "../components/profile/profile.template.client.html?=" + user.id;
 
     }
-
-
-
 
 
 })();
