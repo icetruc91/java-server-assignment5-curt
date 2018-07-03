@@ -1,4 +1,4 @@
-package com.example.myapp.services;
+package webdev.services;
 
 //import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myapp.repositories.UserRepository;
-
 import webdev.models.User;
+import webdev.repositories.UserRepository;
 
 @RestController
 public class UserService {
