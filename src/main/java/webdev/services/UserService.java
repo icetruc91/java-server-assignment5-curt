@@ -70,6 +70,7 @@ public class UserService {
 		repository.deleteById(id);
 	}
 	
+	// Login service end point.
 	@PostMapping("/api/login")
 	public User login(	@RequestBody User credentials,
 	HttpSession session) {
