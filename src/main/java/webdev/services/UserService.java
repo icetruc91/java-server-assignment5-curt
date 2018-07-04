@@ -53,11 +53,8 @@ public class UserService {
 		Optional<User> data = repository.findById(userId);
 		if(data.isPresent()) {
 			User user = data.get();
-			user.setFirstName(newUser.getFirstName());
-			user.setLastName(newUser.getLastName());
-			user.setPassword(newUser.getPassword());
-			user.setUsername(newUser.getUsername());
 			user.setRole(newUser.getRole());
+			user.setEmail(newUser.getEmail());
 			user.setPhone(newUser.getPhone());
 			user.setDate(newUser.getDateOfBirth());
 			repository.save(user);

@@ -4,7 +4,6 @@
     let phone;
     let email;
     let role;
-    let date;
     let url;
     let userInitial;
 
@@ -14,16 +13,25 @@
     userInitial = userAdminService.findUserById(userId);
     userInitial.then(main);
 
+
     // $(main);
 
     function main(user) {
+        $('#successAlert').hide();
+        var year = user.dateOfBirth.substr(0,4);
+        var month = user.dateOfBirth.substr(5,2);
+        var day = user.dateOfBirth.substr(8,2);
+
+        var date = year + "-" + month + "-" + day;
 
         document.getElementById("usernameFld").value = user.username;
         document.getElementById("usernameFld").disabled = true;
         document.getElementById("phoneFld").value = user.phone;
         document.getElementById("emailFld").value = user.email;
         document.getElementById("roleFld").value = user.role;
-        document.getElementById("dateFld").value = user.date;
+        document.getElementById("dateFld").value = date;
+
+
 
         $('#updateBtn').click(update);
         $('#logoutBtn').click(logout);
@@ -31,14 +39,12 @@
     }
 
     function update() {
-        username = document.getElementById("usernameFld").value;
         phone = document.getElementById("phoneFld").value;
         email= document.getElementById("emailFld").value;
         role = document.getElementById("roleFld").value;
         date = document.getElementById("dateFld").value;
 
         var user = {
-            username: username,
             phone: phone,
             email: email,
             date: date,
@@ -51,18 +57,17 @@
     }
 
     function redirect(event) {
-        alert("Information has been updated");
-        location.reload();
+        $('#successAlert').show();
     }
 
     function logout() {
-        var promise = userInitial.logout();
+        var promise = userAdminService.logout();
         promise.then(signingOff);
 
     }
 
     function signingOff(event) {
-        window.location.href = "../components/login/login.template.client.html";
+        window.location.href = "/jquery/components/login/login.template.client.html";
     }
 
 
