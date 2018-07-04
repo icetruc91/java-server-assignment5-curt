@@ -24,16 +24,11 @@
 
     function signInUser(user) {
 
-        if (user.username.toString() != username) {
-            alert("Username is incorrect! Please, try again.");
-            location.reload();
-        }
-        else if (user.password.toString() != password) {
-            alert("Username or password is incorrect! Please, try again.");
-            location.reload();
-        }
-        else if (user.username.toString() != username || user.password.toString() != password) {
-            alert("Username and password are both incorrect! Please, try again.");
+        console.log(user.username.toString());
+        console.log(user.password.toString());
+
+        if (user.username.toString() != username || user.password.toString() != password) {
+            alert("Username or password are incorrect! Please, try again.");
             location.reload();
         }
 

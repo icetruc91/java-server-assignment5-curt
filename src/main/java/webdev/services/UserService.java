@@ -73,18 +73,14 @@ public class UserService {
 	@PostMapping("/api/login")
 	public User login(	@RequestBody User credentials,
 	HttpSession session) {
-	List<User> users = (List<User>) repository.findAll();
+		List<User>users = (List<User>) repository.findUserByCredentials(
+				credentials.getUsername(), 
+				credentials.getPassword());
 	 for (User user : users) {
 	  if( user.getUsername().equals(credentials.getUsername()) &&
 	      user.getPassword().equals(credentials.getPassword())) {
 	   session.setAttribute("currentUser", user);
 	   return user;
-	  }
-	  else if (user.getUsername().equals(credentials.getUsername())) {
-		  return user;
-	  }
-	  else if (user.getPassword().equals(credentials.getPassword())) {
-		  return user;
 	  }
 	 }
 	 User nullUser = new User();
@@ -92,6 +88,7 @@ public class UserService {
 	 nullUser.setPassword("null");
 	 return nullUser;
 	}
+
 
 	
 
@@ -128,7 +125,7 @@ public class UserService {
 		return  repository.findByUsername(username);
 	}
 	
-	// Registers a new user. 
+	
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user,
 	HttpSession session) {
