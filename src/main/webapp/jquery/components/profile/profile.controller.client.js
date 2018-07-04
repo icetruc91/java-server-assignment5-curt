@@ -17,7 +17,9 @@
     // $(main);
 
     function main(user) {
+
         document.getElementById("usernameFld").value = user.username;
+        document.getElementById("usernameFld").disabled = true;
         document.getElementById("phoneFld").value = user.phone;
         document.getElementById("emailFld").value = user.email;
         document.getElementById("roleFld").value = user.role;
