@@ -8,10 +8,12 @@ function UserServiceClient() {
     this.findUserByUsername = findUserByUsername;
     this.logout = logout;
     this.register = register;
+    this.updateProfile = updateProfile;
     this.url = '/api/user';
-    this.registerUrl = '/api/register'
+    this.registerUrl = '/api/register';
     this.loginUrl = '/api/login';
     this.logoutUrl = '/api/logout';
+    this.updateProfileUrl =  "/api/profile";
     var self = this;
 
     // Login service.
@@ -34,6 +36,23 @@ function UserServiceClient() {
 
     function updateUser(userId, user) {
         return fetch(self.url + '/' + userId, {
+            method: 'put',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(function (response) {
+                if (response.bodyUsed) {
+                    return response.json();
+                } else {
+                    return null;
+                }
+            });
+    }
+
+    function updateProfile(user, userId) {
+        return fetch(self.updateProfileUrl + "/" + userId, {
             method: 'put',
             body: JSON.stringify(user),
             headers: {

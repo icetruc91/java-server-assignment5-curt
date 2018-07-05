@@ -48,11 +48,21 @@ public class UserService {
 	}
 	
 	// Updates an existing user. 
-	@PutMapping("/api/user/{userId}")
-	public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
+	@PutMapping("/api/profile/{userId}")
+	public User updateProfile(@RequestBody User newUser, 
+			HttpSession session, @PathVariable("userId") int userId) {
 		Optional<User> data = repository.findById(userId);
+		System.out.println(userId);
+		System.out.println(newUser.getFirstName());
+		System.out.println(newUser.getLastName());
+		System.out.println(newUser.getRole());
+		System.out.println(newUser.getEmail());
+		System.out.println(newUser.getPhone());
+		System.out.println(newUser.getDateOfBirth());
 		if(data.isPresent()) {
 			User user = data.get();
+			user.setFirstName(newUser.getFirstName());
+			user.setLastName(newUser.getLastName());
 			user.setRole(newUser.getRole());
 			user.setEmail(newUser.getEmail());
 			user.setPhone(newUser.getPhone());
@@ -62,6 +72,24 @@ public class UserService {
 		}
 		return null;
 	}
+	
+	// Updates an existing user. 
+		@PutMapping("/api/user/{userId}")
+		public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
+			Optional<User> data = repository.findById(userId);
+			if(data.isPresent()) {
+				User user = data.get();
+				user.setUsername(newUser.getUsername());
+				user.setPassword(newUser.getPassword());
+				user.setFirstName(newUser.getFirstName());
+				user.setLastName(newUser.getLastName());
+				user.setRole(newUser.getRole());
+				repository.save(user);
+				return user;
+			}
+			return null;
+		}
+	
 	
 	// Deletes a user. 
 	@DeleteMapping("/api/user/{userId}")
@@ -105,20 +133,6 @@ public class UserService {
 	(HttpSession session) {
 		session.invalidate();
 	}
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@GetMapping("/api/user/username/{username}")
 	public User findUserByUsername(@PathVariable("username") String username) {
