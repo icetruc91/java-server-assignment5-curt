@@ -30,6 +30,7 @@ function UserServiceClient() {
         });
     }
 
+    // Implemented logout.
     function logout() {
         return fetch(self.logoutUrl);
     }
