@@ -31,6 +31,7 @@
             password: password,
         };
 
+        // Password bonus. 
         if (password.toString() != verifyPassword.toString()) {
             alert("Passwords do not match! Please, try again.");
             location.reload();
