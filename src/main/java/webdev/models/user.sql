@@ -1,4 +1,5 @@
 -- User database schema
+-- Updated 7/5/2018
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) DEFAULT NULL,
