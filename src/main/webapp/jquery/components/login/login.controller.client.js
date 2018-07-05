@@ -27,6 +27,7 @@
         console.log(user.username.toString());
         console.log(user.password.toString());
 
+        // Login validation.
         if (user.username.toString() != username || user.password.toString() != password) {
             alert("Username or password are incorrect! Please, try again.");
             location.reload();
