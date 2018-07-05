@@ -80,10 +80,11 @@ function UserServiceClient() {
     function findUserByUsername(username) {
         return fetch(self.url + '/username/' + username)
             .then(function (response) {
-                if (response.bodyUsed)
+                console.log(response);
+                // if (response.bodyUsed)
                     return response.json();
-                else
-                    return null;
+                // else
+                //     return null;
             });
     }
 

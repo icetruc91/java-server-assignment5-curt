@@ -31,13 +31,14 @@
             password: password,
         };
 
-        // Password bonus. 
+        // Password bonus.
         if (password.toString() != verifyPassword.toString()) {
             alert("Passwords do not match! Please, try again.");
             location.reload();
         }
 
         // Finds user by username.
+        console.log(user.username);
         var promise = userAdminService.findUserByUsername(user.username);
         promise.then(registerHelper);
 
@@ -46,8 +47,10 @@
 
 
     function registerHelper(returnUser) {
-        if (returnUser != null) {
+        console.log(returnUser.toString());
+        if (returnUser.username != null) {
             alert("Username is already taken! Please, try again.");
+            location.reload();
 
         }
         else {

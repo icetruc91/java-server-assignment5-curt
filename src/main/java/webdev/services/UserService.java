@@ -136,7 +136,9 @@ public class UserService {
 	
 	@GetMapping("/api/user/username/{username}")
 	public User findUserByUsername(@PathVariable("username") String username) {
-		return  repository.findByUsername(username);
+		User tryUser = repository.findByUsername(username);
+		System.out.println(tryUser.getUsername());
+		return tryUser;
 	}
 	
 	
