@@ -52,13 +52,6 @@ public class UserService {
 	public User updateProfile(@RequestBody User newUser, 
 			HttpSession session, @PathVariable("userId") int userId) {
 		Optional<User> data = repository.findById(userId);
-		System.out.println(userId);
-		System.out.println(newUser.getFirstName());
-		System.out.println(newUser.getLastName());
-		System.out.println(newUser.getRole());
-		System.out.println(newUser.getEmail());
-		System.out.println(newUser.getPhone());
-		System.out.println(newUser.getDateOfBirth());
 		if(data.isPresent()) {
 			User user = data.get();
 			user.setFirstName(newUser.getFirstName());
@@ -157,6 +150,7 @@ public class UserService {
 		session.invalidate();
 	return "session invalidated";
 	}
+	
 
 
 	
